@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useLayoutEffect as useOriginalLayoutEffect } from 'react';
+import { isBrowser } from '../lib/util';
 
-const useLayoutEffect = typeof window !== 'undefined' ? useOriginalLayoutEffect : useEffect;
+const useLayoutEffect = isBrowser ? useOriginalLayoutEffect : useEffect;
 const immutableCache = new Map();
 
 const cacheHelper = <K, V>() => ({
